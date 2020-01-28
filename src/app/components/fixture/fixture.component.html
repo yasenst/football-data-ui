@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Fixtures</h4>
+
+      <div class="row">
+        <a class="btn btn-primary" routerLink="/team">Add new fixture</a>
+      </div>
+      <hr>
+      <div class="btn-group">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select League...
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item"  (click) = "onSelectLeague(-1);">All</a>
+          <a class="dropdown-item"  *ngFor="let league of leagues" (click) = "onSelectLeague(league.id);">{{league.name}}</a>
+        </div>
+      </div>
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Team...
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item"  *ngFor="let team of teams" (click) = "onSelectTeam(team.name);">{{team.name}}</a>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <table class="table table-striped">
+        <tbody>
+          <tr *ngFor="let fixture of fixtures">
+            <td>
+              <a [routerLink]="['/team', fixture.homeTeam]">{{fixture.homeTeam}}</a>
+            </td>
+            <td>
+              <a [routerLink]="['/team', fixture.awayTeam]">{{fixture.awayTeam}}</a>
+            </td>
+            <td>{{fixture.homeTeamScore}}</td>
+            <td>{{fixture.awayTeamScore}}</td>
+            <td>{{fixture.fixtureDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <ul class="nav nav-pills">
+        <li class="nav-item" *ngFor="let p of pages; let i = index">
+          <a class="nav-link" href="#" (click)="setPage(i, $event)"
+          [ngClass]="{'active':i==page}">{{i}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

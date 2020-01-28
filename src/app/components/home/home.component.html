@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <a class="btn btn-primary" routerLink="/">Back to Fixtures</a>
+  </div>
+  <form [formGroup]="fixtureForm" (ngSubmit)="submitRegistration()" novalidate>
+    <div *ngIf="validMessage != ''">
+      <h3 class="has-info">{{validMessage}}</h3>
+    </div>
+    <div class="form-group">
+      <label>League</label>
+      <select class="form-control" formControlName="league" [(ngModel)]="selectedLeagueVal" (ngModelChange)="onSelectLeague($event)"  required>
+        <option value="">Please select a league</option>
+        <option *ngFor="let l of leagues" [ngValue]="l">
+          {{l.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Home Team</label>
+      <select class="form-control" formControlName="homeTeam" required>
+        <option value="">Please select home team</option>
+        <option *ngFor="let t of teams"
+                [value]="t.name">
+          {{t.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Away Team</label>
+      <select class="form-control" formControlName="awayTeam" required>
+        <option value="">Please select away team</option>
+        <option *ngFor="let t of teams"
+                [value]="t.name">
+          {{t.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Home Team Goals</label>
+      <input type="text" class="form-control" formControlName="homeTeamScore" required/>
+    </div>
+    <div class="form-group">
+      <label>Away Team Goals</label>
+      <input type="text" class="form-control" formControlName="awayTeamScore" required/>
+    </div>
+    <button type="submit" class="btn btn-primary" >Submit</button>
+  </form>
+</div>
